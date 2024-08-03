@@ -15,6 +15,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Show build environment
+        run: |
+          echo "Rust version: $(rustc --version)"
+          echo "Cargo version: $(cargo --version)"
+          echo "PostgreSQL version: $(psql --version)"
       - name: Init DB
         run: cargo install --version='~0.7' sqlx-cli --no-default-features --features rustls,postgres && ./scripts/init_db.sh
       - name: Lint

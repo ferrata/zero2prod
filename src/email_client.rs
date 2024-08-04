@@ -43,6 +43,8 @@ impl EmailClient {
             text_body: text_content,
         };
 
+        dbg!(&url, &self.http_client);
+
         self.http_client
             .post(&url)
             .header(
@@ -53,6 +55,8 @@ impl EmailClient {
             .send()
             .await?
             .error_for_status()?;
+
+        dbg!("Email sent!");
 
         Ok(())
     }
